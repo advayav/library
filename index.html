@@ -10,10 +10,48 @@
 </head>
 <body>
     <h1 class="heading">Library</h1>
-    <button class="new-book" type="button">New Book</button>
-    <div class="books">
+    <div class="page-content">
+        <div class="top-part">
+            <button class="new-book" type="button">New Book</button>
+        </div>
+        <div class="books">
 
+        </div>
     </div>
+
+    <dialog id="dialog" class="form-dialog" closedby="any">
+        <form action="dialog" class="newbook-form">
+            <div class="form-box">
+                <!-- <div class="close-form">
+                    <span><button class="close">X</button></span>
+                </div> -->
+                <div class="entries">
+                    <div class="field">
+                        <label for="book-title" class="input-title">Title</label> <br>
+                        <input type="text" name="book-title" class="input-val" id="book-title" required>
+                    </div>
+                    <div class="field">
+                        <label for="book-author" class="input-title">Author</label> <br>
+                        <input type="text" name="book-author" class="input-val" id="book-author" required>
+                    </div>
+                    <div class="field">
+                        <label for="book-pages" class="input-title">Pages</label> <br>
+                        <input type="number" name="book-pages" class="input-val" id="book-pages" required>
+                    </div>
+                    <div class="field">
+                        <label for="book-status" class="input-title">Status</label> <br>
+                        <input type="text" name="book-status" class="input-val" id="book-status" required>
+                    </div>
+                </div>
+                
+                <div class="submit-button">
+                    <button class="submit" value="default" id="submit" type="submit">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </dialog>
+    
     
 </body>
 </html>
