@@ -34,13 +34,14 @@ function displayBooks() {
             <p class="author">Author: ${book.author}</p>
             <p class="pages">Pages: ${book.pages}</p>
             <p class="read">Status: ${book.read}</p>
-            <button class=remove>Remove</button>`
+            <button class=remove>Remove</button>
+            <button class=swap-status>Change read status</button>`
             
         books.appendChild(info)
     })
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 259, "not read yet")
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 259, "Not read yet")
 displayBooks()
 
 
@@ -72,11 +73,35 @@ submit.addEventListener("click", (e) => {
 const books = document.querySelector(".books")
 
 books.addEventListener("click", (e) => {
+    const tile = e.target.closest(".book-tile")
+    const id = tile.dataset.id
+    
     if (e.target.classList.contains("remove")) {
-        const tile = e.target.closest(".book-tile")
-        const id = tile.dataset.id
-
         myLibrary = myLibrary.filter((book) => book.id !== id)
         displayBooks()
+        return;
+    }
+
+    if (e.target.classList.contains("swap-status")) {
+        const book = myLibrary.find((b) => b.id === id)
+        book.swap()
+
+        // if (book) {
+        //     book.swap()
+        // } else {
+        //     console.log("Book not found")
+        // }
+
+        
     }
 })
+
+Book.prototype.swap = function(){
+    if (this.read.startsWith("n") || this.read.startsWith("N")) {
+        this.read = 'Read'
+    } else {
+        this.read = 'Not read yet'
+    }
+
+    displayBooks()
+}
