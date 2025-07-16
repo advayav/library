@@ -90,9 +90,7 @@ books.addEventListener("click", (e) => {
         //     book.swap()
         // } else {
         //     console.log("Book not found")
-        // }
-
-        
+        // }        
     }
 })
 
