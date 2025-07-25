@@ -1,23 +1,57 @@
 let myLibrary = []
 
-function Book(title, author, pages, read) {
-    if (!new.target) {
-        return "You must use new to call the constructor"
+class Book{
+    constructor(title, author, pages, read) {
+        if (!new.target) {
+            return "You must use new to call the constructor"
+        }
+            this._id = crypto.randomUUID()
+            this._title = title
+            this._author = author
+            this._pages = pages
+            this._read = read
+        //     this.info = function() {
+        //         return title + ", " + author + ", " + pages + " pages, " + read
+        // }
     }
-    this.id = crypto.randomUUID()
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-    this.info = function() {
-        return title + ", " + author + ", " + pages + " pages, " + read
+
+    get id() {
+        return this._id
     }
+
+    get title() {
+        return this._title
+    }
+
+    get author() {
+        return this._author
+    }
+
+    get pages() {
+        return this._pages
+    }
+
+    get read() {
+        return this._read
+    }
+
+    get info() {
+        return this._title + ", " + this._author + ", " + this._pages + " pages, " + this._read
+    }
+
+    swap() {
+        if (this._read.startsWith("n") || this._read.startsWith("N")) {
+            this._read = 'Read'
+        } else {
+            this._read = 'Not read yet'
+        }
+    }
+    
 }
 
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read)
     myLibrary.push(book)
-    console.log("Books in the library: ", myLibrary )
 }
 
 function displayBooks() {
@@ -85,6 +119,7 @@ books.addEventListener("click", (e) => {
     if (e.target.classList.contains("swap-status")) {
         const book = myLibrary.find((b) => b.id === id)
         book.swap()
+        displayBooks()
 
         // if (book) {
         //     book.swap()
@@ -93,13 +128,3 @@ books.addEventListener("click", (e) => {
         // }        
     }
 })
-
-Book.prototype.swap = function(){
-    if (this.read.startsWith("n") || this.read.startsWith("N")) {
-        this.read = 'Read'
-    } else {
-        this.read = 'Not read yet'
-    }
-
-    displayBooks()
-}
